@@ -41,9 +41,9 @@
       console.log(ledArray);
 
       const rowIds = [];
-      const $body = document.getElementsByClassName("controls")[0];
+      const $controls = document.getElementsByClassName("controls")[0];
 
-      $body.addEventListener("click", e => {
+      $controls.addEventListener("click", e => {
         // event handler on body - need to check if the orginal target of the
         // bubbled event has a value, i.e. is a checkbox
         const val = e.target.value;
@@ -84,7 +84,7 @@
         const $row = document.createElement("div");
         $row.className = "row";
         addCheckboxesToRow($row, idx);
-        $body.appendChild($row);
+        $controls.appendChild($row);
       };
 
       for (let r = 0; r < 16; r++) {
