@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+  <head>
+    <style>
+      input[type="checkbox"] {
+        /*Double-sized Checkboxes */
+
+        -ms-transform: scale(2); /* IE */
+        -moz-transform: scale(2); /* FF */
+        -webkit-transform: scale(2); /* Safari and Chrome */
+        -o-transform: scale(2); /* Opera */
+        transform: scale(2);
+        margin: 10px;
+      }
+
+      /* make a grid and centre that @*%^!? */
+
+      .controls {
+        display: grid;
+        grid-template-rows: repeat(12, 1fr);
+        margin: auto;
+        width: 100%;
+        justify-items: center;
+      }
+    </style>
+
+    <script>
+      //define initial LED array
+      let ledArray = [];
+      ledArray.fill(0, 0, 123); // use the fill method to avoid needing longhand assignment of lots of zeroes
+
+      //  send the checkbox states to the ID# position in the array
+      // function updateLedArray(e) {
+      //   let currentCheck = e.target.value;
+      //   console.log(currentCheck);
+      //
+      //   ledArray[currentCheck] = currentCheckBoxStatus.checked == true ? 1 : 0;
+      //
+      //   console.log(ledArray);
+      // }
+    </script>
+
+    <title>Obligatory Title Tag</title>
+  </head>
+  <body>
+    <div class="controls">
+      <!-- 96 buttons IDs to match array positions numbered by LED grid -->
+    </div>
+    <script>
+      // build the interface
+      // script tag in the body so it's got access to the DOM
+
+      const rowIds = [];
+      const $body = document.getElementsByTagName("body")[0];
+
+      $body.addEventListener("click", e => {
+        // event handler on body - need to check if the orginal target of the
+        // bubbled event has a value, i.e. is a checkbox
+        const val = e.target.value;
+
+        if (val) {
+          // this line gets all the checked values in one lump
+          const $checked = document.querySelectorAll("input:checked");
+          // original code only mutates one item at a time which is cleaner
+          // so...
+
+          let out = [];
+          for (i = 0; i < $checked.length; i++) {
+            out.push(parseInt($checked[i].value, 10));
+          }
+          out.sort((a, b) => {
+            return a - b;
+          });
+          console.log(out.join(","));
+        }
+      });
+
+      for (let n = 0; n < 113; n += 16) {
+        rowIds.push(n);
+      }
+
+      const addCheckboxesToRow = ($row, idx) => {
+        rowIds.forEach(id => {
+          const element = document.createElement("input");
+          element.value = id + idx;
+          element.type = "checkbox";
+          $row.appendChild(element);
+        });
+      };
+
+      const createRow = idx => {
+        const $row = document.createElement("div");
+        $row.className = "row";
+        addCheckboxesToRow($row, idx);
+        $body.appendChild($row);
+      };
+
+      for (let r = 0; r < 16; r++) {
+        createRow(r);
+      }
+
+      //
+      // const row1Ids = [0, 16, 32, 48, 64, 80, 96, 112];
+      //
+      // const addCheckboxesToRow = (rowIds, rowElementId) => {
+      //   rowIds.forEach(id => {
+      //     const element = document.createElement("input");
+      //     element.id = id;
+      //     element.type = "checkbox";
+      //     element.class = "buttons";
+      //
+      //     const row = document.getElementById(rowElementId);
+      //     row.appendChild(element);
+      //   });
+      // };
+      // addCheckboxesToRow(row1Ids, "firstRow");
+    </script>
+  </body>
+</html>
