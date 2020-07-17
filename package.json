@@ -1,0 +1,19 @@
+{
+  "name": "duck-arduino",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:girlcheese/duck-arduino.git",
+  "author": "Sam Carrington <sam.carrington@analogfolk.com>",
+  "license": "MIT",
+  "scripts": {
+    "checkbox-dev": "parcel ./checkboxes/index.html",
+    "checkbox-build": "parcel build ./checkboxes/index.html"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "prettier": "^2.0.5"
+  },
+  "dependencies": {
+    "parcel-plugin-inliner": "^1.0.14"
+  }
+}
