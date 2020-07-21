@@ -1,6 +1,8 @@
 // build the interface
 // script tag in the body so it's got access to the DOM
 
+const axios = require('axios')
+
 //define initial LED array
 let ledArray = []
 ledArray.length = 128
@@ -22,7 +24,19 @@ $controls.addEventListener('click', e => {
     console.log(e.target, e.target.value, e.target.checked)
     let arrayIndex = parseInt(e.target.value, 10)
     ledArray[arrayIndex] = e.target.checked ? 1 : 0 // ternary short-hand assignment
-    console.log(ledArray)
+    if (process.env.NODE_ENV === 'development') {
+      console.log(ledArray)
+    }
+    axios
+      .post('/api/led', {
+        ledData: ledArray,
+      })
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => {
+        console.error(error)
+      })
   }
 })
 
