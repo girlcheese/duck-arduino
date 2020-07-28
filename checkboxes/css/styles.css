@@ -5,7 +5,7 @@ input[type='checkbox'] {
     -webkit-transform: scale(2); /* Safari and Chrome */
     -o-transform: scale(2); /* Opera */
     transform: scale(2);
-     margin: 10px;
+    margin: 10px;
     height: 3vh;
     width: 3vh;
 }
