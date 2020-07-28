@@ -5,7 +5,9 @@ input[type='checkbox'] {
     -webkit-transform: scale(2); /* Safari and Chrome */
     -o-transform: scale(2); /* Opera */
     transform: scale(2);
-    margin: 10px;
+     margin: 10px;
+    height: 3vh;
+    width: 3vh;
 }
 
 /* make a grid and centre that @*%^!? */
@@ -15,4 +17,8 @@ input[type='checkbox'] {
     margin: auto;
     width: 100%;
     justify-items: center;
+}
+
+.row {
+    height: 6vh;
 }
